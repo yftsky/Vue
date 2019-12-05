@@ -42,7 +42,12 @@
               template: 'index.html',
               filename: 'index.html'
             })
-          ]
+          ],
+          devServer:{
+
+          },
+          devtool:"",//开启source-map调试
+          
         }
     
     3). 生成环境打包并运行
@@ -56,6 +61,7 @@
     
     2). 下载依赖包
         yarn add -D webpack-dev-server
+        作用:自动打包,启动浏览器
     
     3). 配置开发服务器
         devServer: {
@@ -68,10 +74,11 @@
 
     5). 开发环境运行
         配置命令: "dev": "webpack-dev-server --mode development"
+        
         执行命令: yarn dev
 
 ## 4. 打包处理 ES6/CSS/图片
-    1). 处理ES6
+    1). 处理ES6转es5
         a. 下载依赖包
             yarn add -D babel-loader @babel/core @babel/preset-env
         b. 配置
@@ -159,4 +166,11 @@
     3). 编码: 
         src/App.vue
         src/index.js
-        
+    4).区分生产和开发环境
+    生产:
+        1.npm run bulid  ==>webpack-dev-server
+          1)在内存编译打包,生成内存中的打包文件
+          2)保存在本地(在本地生成打包文件) ===>需要手动启动服务器运行
+        2.npm run dev  ===>webpack-dev-server 
+          1)在内存编译打包,生成内存中的打包文件
+          2)启动服务器,运行内存中的打包文件 ===>通过浏览器虚拟路径访问
