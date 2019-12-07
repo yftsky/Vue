@@ -11,23 +11,29 @@
     2). webpack的基本配置: webpack.config.js
         module.exports = {
           mode: 'production|development'
+          //入口
           entry: {
 
           },
+          //出口
           output: {
 
           },
+          //模块加载器
           module: {
             rules: [
 
             ]
           },
+          //插件
           plugins: [
 
           ],
+          // 配置开发服务器
           devServer: {
 
           },
+          //开启 source-map调试
           devtool: ''
         }
 
@@ -43,5 +49,15 @@
 
 
 
-## vue组件化开发
 
+
+
+## 2. 搭建Vue的开发环境
+    1). 配置处理.Vue组件文件的loader和plugin
+    2). 配置使用vue-style-loader替换style-loader
+    3). 解决无法编译vue模板的错误
+        原因: 默认引入的vue是不带编译器的版本, 无法对template配置指定模板进行编译
+        解决: 配置模块别名来指定引入vue带编译器的版本
+    4). 配置省略模块后缀名(.js/.vue/.json)
+
+## vue组件化开发
