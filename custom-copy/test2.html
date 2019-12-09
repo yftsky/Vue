@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  
+</head>
+<body>
+ 
+  <script type="text/javascript" src="./event-bus copy.js"></script>
+  <script type="text/javascript">
+   /* 
+  eventBus:
+    1). on(eventName, listener): 绑定事件监听
+    2). emit(eventName, data)a: 分发事件
+    3). off(eventName): 移除事件监听
+  */
+        eventBus.on('add',(data) =>{
+          console.log("add1()",data)
+        })
+        eventBus.on('add',(data)=>{
+          console.log("add2()",data)
+        })
+        eventBus.on('delete',(data)=>{
+          console.log('delete()',data)
+        })
+
+
+        eventBus.off("add")
+        eventBus.emit("add","haha")
+        eventBus.emit("delete","oooo")
+         
+        
+  </script>
+</body>
+</html>

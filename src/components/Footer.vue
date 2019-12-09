@@ -4,17 +4,19 @@
         <input type="checkbox" v-model="isCheckAll"/>
       </label>
       <span>
-        <span>已完成{{completedSize}}</span> / 全部{{todos.length}}
+        <span>已完成{{completeSize}}</span> / 全部{{todos.length}}
       </span>
-      <button class="btn btn-danger" v-show="completedSize>0">清除已完成任务</button>
+      <button class="btn btn-danger" v-show="completeSize>0">清除已完成任务</button>
     </div>
 </template>
 
 <script type="text/ecmascript-6">
+
   export default {
 
     props:{
-      todos:Array
+      todos:Array,
+      checkAll:Function
     },
 
     data() {
@@ -24,14 +26,20 @@
     },
 
     computed: {
-      completedSize(){
+      completeSize(){
 
         //Array.reduce 累计返回一个结果,参数:()=>{}:callback; 0:初始统计值
         //
         return this.todos.reduce((preTotal,todo,index)=>preTotal+(todo.completed ? 1 : 0),0)
       },
-      isCheckAll(){
-          return  this.todos.length === completedSize()
+      isCheckAll:{
+        get(){
+            return  this.todos.length === this.completeSize && this.completeSize>0
+        },
+        set(value){
+          this.ckeckAll(value)
+        }
+         
       }
       
     },

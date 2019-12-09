@@ -174,3 +174,55 @@
         2.npm run dev  ===>webpack-dev-server 
           1)在内存编译打包,生成内存中的打包文件
           2)启动服务器,运行内存中的打包文件 ===>通过浏览器虚拟路径访问
+## 6. 解决开发环境ajax请求跨域问题
+    1). 利用webpack-dev-server进行请求代理转发
+        webpack-dev-server内部利用http-proxy-middle包对特定请求进行转发操作
+    2). 配置:
+        devServer: {
+          proxy: {
+            // 处理以/api开头路径的请求
+            // '/api': 'http://localhost:4000'
+            '/api': {
+              target: 'http://localhost:4000', // 转发的目标地址
+              pathRewrite: {
+                '^/api' : ''  // 转发请求时去除路径前面的/api
+              },
+              changeOrigin: true, // 支持跨域
+            }
+          }
+        }
+
+## 7. 配置async/await的编译环境
+    1). 下载包
+        yarn add @babel/runtime-corejs2
+    2). 配置
+        presets: [
+          ['@babel/preset-env', {
+            useBuiltIns: 'usage',
+            'corejs': 2 // 处理一些新语法的实现
+          }]
+        ]
+
+## 8. 解决mint-ui按需引入配置异常的问题
+    1). 文档上的配置
+        "plugins": [
+          ["component", [
+            {
+              "libraryName": "mint-ui",
+              "style": true
+            }
+          ]]
+        ]
+    2). 异常信息:  
+        Error: .plugins[0][1] must be an object, false, or undefined
+    3). 原因:
+        文档编写时, 是根据老的babel版本编写的, 新版本的babel配置有变化
+        以前是数组, 现在只能是对象
+    4). 修正:
+        "plugins": [
+          ["component", {
+              "libraryName": "mint-ui",
+              "style": true
+          }]
+        ]
+         

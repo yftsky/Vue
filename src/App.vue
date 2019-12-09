@@ -4,7 +4,7 @@
       <Header :addTodo='addTodo'/>
       <List :todos='todos' :deleteTodo="deleteTodo"/>
       <Footer :todos='todos'
-        
+        :checkAll = "checkAll"
       /> 
     </div>
   </div>
@@ -38,6 +38,9 @@
     },
     deleteTodo(index){
       this.todos.splice(index,1)
+    },
+    ckeckAll(){
+
     }
   },
     components:{
