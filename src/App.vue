@@ -1,66 +1,48 @@
 <template>
-  <div class="todo-container">
-    <div class="todo-wrap">
-      <Header :addTodo='addTodo'/>
-      <List :todos='todos' :deleteTodo="deleteTodo"/>
-      <Footer :todos='todos'
-        :checkAll = "checkAll"
-      /> 
-    </div>
+  <div>
+      <div class="row">
+        <div class="col-xs-offset-2 col-xs-8">
+          <div class="page-header">
+            <h2>Router Basic - 01</h2>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-2 col-xs-offset-2">
+          <div class="list-group">
+            <!-- 路由链接 -->
+            <!-- <router-link class="list-group-item" to="/about">About</router-link>
+            <router-link class="list-group-item" to="/home">Home</router-link> -->
+            <router-link class="list-group-item" to="/About">About</router-link>
+            <router-link class="list-group-item" to="/Home">Home</router-link>
+          </div>
+        </div>
+        <div class="col-xs-6">
+          <div class="panel">
+            <div class="panel-body">
+              <!-- 在些显示当前路由组件 -->
+              <!-- 当前: 与请求的路径匹配的路由 -->
+              <!-- <keep-alive exclude="About">  对指定的路由组件不做缓存处理 -->
+                <!-- <router-view></router-view>
+              </keep-alive> -->
+
+             <keep-alive> <!-- 对指定路由缓存 -->
+                <router-view></router-view> <!-- 展示当前路由组件 -->
+             </keep-alive> 
+            </div> 
+          </div>
+        </div>
+      </div>
   </div>
-</template>  
+</template>
 
-<script>
- import Header from '@/components/Header.vue'
- import Footer from '@/components/Footer.vue'
- import List from '@/components/List.vue'
+<script type="text/ecmascript-6">
+  export default {}
+</script>
 
-  export default {
-  data() {
-    return {
-      todos:[
-        {id:1,title:"A",completed:false},
-        {id:2,title:"B",completed:true},
-        {id:3,title:"C",completed:false},
-        {id:4,title:"D",completed:true}
-      ]
-    }
-  },
-  // mounted() {
-  //   setTimeout(()=>{
-  //     this.todos = readTodos()
-  //   },1000);
-  // },
-  methods: {
-    //添加todo
-    addTodo(todo){
-      this.todos.unshift(todo)
-    },
-    deleteTodo(index){
-      this.todos.splice(index,1)
-    },
-    ckeckAll(){
+<style scoped>
 
-    }
-  },
-    components:{
-      Header,
-      Footer,
-      List
-    }
-  }
-</script> 
-<style >
-/*app*/
-.todo-container {
-  width: 600px;
-  margin: 0 auto;
-}
-.todo-container .todo-wrap {
-  padding: 10px;
-  border: 1px solid #ddd;
-  border-radius: 5px;
-}
+ 
 </style>
 
 
